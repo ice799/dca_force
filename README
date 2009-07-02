@@ -19,9 +19,10 @@ The only requirement (other than gcc, of course) is libpci:
 
 % sudo apt-get install libpci-dev
 
-And then simply:
+If you don't have exactly 4 logical CPUs you need to specify how many:
 
-% make
+% make NUM_CPUS=8
+
 
 Using
 =====
