@@ -1,0 +1,50 @@
+dca_force by   Joe Damato   http://timetobleed.com
+==================================================
+
+W A R N I N G:
+
+  This code can be dangerous if you dont know what you are doing. Test this 
+  on a server with a similar configuration to your production server before
+  deploying.
+
+  THIS CODE IS INTENDED TO BE USED BY EXPERTS WHO UNDERSTAND WHAT IT DOES.
+
+  EXERCISE EXTREME CAUTION, you have been WARNED.
+
+
+Building
+========
+
+The only requirement (other than gcc, of course) is libpci:
+
+% sudo apt-get install libpci-dev
+
+And then simply:
+
+% make
+
+Using
+=====
+
+Simply run the binary before loading your ioatdma module:
+
+% sudo ./force_dca
+% sudo modprobe ioatdma
+
+You should then see:
+
+  [   72.782249] dca service started, version 1.8
+  [   72.838853] ioatdma 0000:00:08.0: setting latency timer to 64
+  [   72.838865] ioatdma 0000:00:08.0: Intel(R) I/OAT DMA Engine found, 4 channels, device version 0x12, driver version 3.64
+  [   72.904027]   alloc irq_desc for 56 on cpu 0 node 0
+  [   72.904030]   alloc kstat_irqs on cpu 0 node 0
+  [   72.904039] ioatdma 0000:00:08.0: irq 56 for MSI/MSI-X
+
+in your dmesg output.
+
+If you see:
+
+  [    8.367333] ioatdma 0000:00:08.0: DCA is disabled in BIOS
+
+then either your chipset doesnt support it, or the registers live somewhere else
+and you'll need to modify the code.
