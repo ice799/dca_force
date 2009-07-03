@@ -16,7 +16,6 @@
 #define PCI_HEADER_TYPE         	0x0e 
 #define MSR_P6_DCA_CAP			0x000001f8
 
-#define NUM_CPUS			4
 void check_dca(struct pci_dev *dev)
 {
 	u32 dca = pci_read_long(dev, INTEL_BRIDGE_DCAEN_OFFSET);
